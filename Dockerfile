@@ -1,7 +1,7 @@
-FROM perl
-RUN apt-get update && apt-get install -y \
-    nmap \
-    && rm -rf /var/lib/apt/lists/*
-COPY . /usr/src/myapp
+FROM martinjohn/perl-light
+RUN apk update && apk add \
+        nmap \
+     && rm -rf /var/cache/apk/*
+COPY scan.pl /usr/src/myapp/scan.pl
 WORKDIR /usr/src/myapp
-CMD [ "perl", "./scan.pl" ]
+CMD ["./scan.pl"]
